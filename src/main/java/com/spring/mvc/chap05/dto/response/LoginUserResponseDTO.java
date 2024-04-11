@@ -14,7 +14,7 @@ public class LoginUserResponseDTO {
     private String email;
     private String auth;
     private String profile;
-    private String LoginMethod;
+    private String loginMethod;
 
 }
 

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!-- header -->
 <header>
     <div class="inner-header">
@@ -9,7 +8,6 @@
                 <img src="/assets/img/logo.png" alt="로고이미지">
             </a>
         </h1>
-
         <!-- 프로필 사진 -->
         <div class="profile-box">
             <c:if test="${login == null || login.profile == null}">
@@ -17,17 +15,17 @@
             </c:if>
 
             <c:if test="${login != null && login.profile != null}">
-                <c:choose>
-                <c:when test = "${login.loginMethod == 'COMMON'}">
                 <img src="/display${login.profile}" alt="프사">
-                </c:when>
-                <c:otherwise>
-                <img src="${login.profile}" alt="프사">
-                </c:otherwise>
+                <c:choose>
+                    <c:when test="${login.loginMethod == 'COMMON'}">
+                        <img src="/display${login.profile}" alt="프사">
+                    </c:when>
+                    <c:otherwise>
+                        <img src="${login.profile}" alt="프사">
+                    </c:otherwise>
                 </c:choose>
             </c:if>
         </div>
-
 
         <h2 class="intro-text">
             Welcome ${sessionScope.login == null ? '' : login.name}
@@ -37,7 +35,6 @@
             <span class="lnr lnr-menu"></span>
         </a>
     </div>
-
     <nav class="gnb">
         <a href="#" class="close">
             <span class="lnr lnr-cross"></span>
@@ -47,29 +44,21 @@
             <li><a href="#">About</a></li>
             <li><a href="/board/list">Board</a></li>
             <li><a href="#">Contact</a></li>
-
             <c:if test="${login == null}">
                 <li><a href="/members/sign-up">Sign Up</a></li>
                 <li><a href="/members/sign-in">Sign In</a></li>
             </c:if>
-
             <c:if test="${sessionScope.login != null}">
                 <li><a href="#">My Page</a></li>
                 <li><a href="/members/sign-out">Sign Out</a></li>
             </c:if>
-
         </ul>
     </nav>
-
 </header>
 <!-- //header -->
-
 <script>
-
     const $profileBox = document.querySelector('.profile-box');
-
     $profileBox.onclick = e => {
         location.href='/display/download${login.profile}';
     };
-
 </script>
